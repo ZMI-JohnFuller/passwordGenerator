@@ -14,6 +14,16 @@ body{
 
 #inputCont{display:table;margin:auto;padding:5px;}
 
+#noticeArea{
+	position:table;
+	height:50px;
+	width:100%;
+	background-color:red;
+	color:#FFFFFF;
+	margin:auto;
+	display:none;
+}
+
 #container{
 	display:table;
 	margin:auto;

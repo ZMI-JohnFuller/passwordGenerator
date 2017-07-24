@@ -7,11 +7,12 @@
 			<p id="testP"></p>
 		</div>
 		<div id="inputCont">
-			<input id="noLetters" type="checkbox">No Letters</input>
-			<input id="noNumbers" type="checkbox">No Numbers</input>
-			<input id="noSymbols" type="checkbox">No Symbols</input><br />
+			<input id="noLetters" type="checkbox" onClick="checkBoxes()">No Letters</input>
+			<input id="noNumbers" type="checkbox" onClick="checkBoxes()">No Numbers</input>
+			<input id="noSymbols" type="checkbox" onClick="checkBoxes()">No Symbols</input><br />
 			<input id="passOutput" placeholder="Click 'Generate'" autofocus style="width:250px;"></input>
 			<button id="submitInput" onClick="generatePassword()">Generate</button>
 		</div>
+		<div id="noticeArea"><p id="noticeAreaText"></p></div>
 	</body>
 </html>

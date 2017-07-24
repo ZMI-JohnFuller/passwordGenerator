@@ -7,21 +7,86 @@ function generatePassword(){
 }
 
 function generate(){
+	//get variables and elements
+	var nL = document.getElementById("noLetters");
+	var nN = document.getElementById("noNumbers");
+	var nS = document.getElementById("noSymbols");
 	var chars = "abcdefghijklmnopqrstuvwxyz";
 	var numbers = "0123456789";
 	var symbols = "!@#$%^&*()_+~`|}{[]\:;?,./-='"
 	var maxChars = 15;
 	var generatedPass = "";
 	var holdPass = "";
+	//Main loop
 	for(var i = 0;i < maxChars;i++){
+		//Pick random value for each passSet
 		var passSet1 = chars.charAt(Math.random() * chars.length);
 		var passSet2 = numbers.charAt(Math.random() * numbers.length);
 		var passSet3 = symbols.charAt(Math.random() * symbols.length);
+		//if a checkbox is selected, clear out that value
+		if(nL.checked == true){
+			passSet1 = "";
+			}
+		if(nN.checked == true){
+			passSet2 = "";
+		}
+		if(nS.checked == true){
+			passSet3 = "";
+			}
+		//Randomly select a set to be added to holdPass
 		var r = Math.floor((Math.random() * 3) + 1)
-		generatedPass += passSet1;
-		generatedPass += passSet2;
-		generatedPass += passSet3;
-
+		if(r == 1){
+			holdPass += passSet1;
+		}
+		if(r == 2){
+			holdPass += passSet2;
+		}
+		if(r == 3){
+			holdPass += passSet3;
+		}
+		//if the length of holdPass isn't equal to maxChars, iterate until it is
+		if(holdPass.length < maxChars){
+			if(i = 14){i--}
+			console.log("Password:" + holdPass + "::::" +holdPass.length);
+		}
+		
 	}
+	//pass the value to generatedPass to be returned and displayed
+	generatedPass = holdPass;
+	//logging
+	console.log("Password:" + holdPass + "::::" +holdPass.length);
+	console.log("passSet1:" + passSet1);
+	console.log("passSet2:" + passSet2);
+	console.log("passSet3:" + passSet3);
+	console.log("Iteration:" + i);
+	console.log("Random Position:" + r);
+	//return password
 	return generatedPass;
+}
+
+function checkBoxes(){
+	var nL = document.getElementById("noLetters");
+	var nN = document.getElementById("noNumbers");
+	var nS = document.getElementById("noSymbols");
+	var nA = document.getElementById("noticeArea");
+	var nT = document.getElementById("noticeAreaText");
+	if(nL.checked == true && nN.checked == true && nS.checked == true){
+		nL.checked = false;
+		nN.checked = false;
+		nS.checked = false;
+		nA.style.display = 'block';
+		nT.innerHTML = "You cannot select all checkboxes at once.";
+		window.setTimeout(hideNotice,5000);
+	}
+	else{
+		nA.style.display = 'none';
+		nT.innerHTML = "";
+	}
+}
+
+function hideNotice(){
+	var nA = document.getElementById("noticeArea");
+	var nT = document.getElementById("noticeAreaText");
+	nA.style.display = 'none';
+	nT.innerHTML = "";
 }
